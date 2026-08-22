@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Text-to-SQL for manufacturing databases — Cheol Kim</title>
+<meta name="description" content="Building and measuring a training set for a natural-language database interface.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <a class="who" href="index.html">Cheol Kim <span style="font-weight:400;color:var(--faint)">김철</span></a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="ambiguity-text-to-sql.html">Ambiguity</a>
+      <a href="nl2sql-manufacturing.html" aria-current="page">Text-to-SQL</a>
+      <a href="assets/Cheol_Kim_CV.pdf">CV</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <h1>Text-to-SQL for manufacturing databases</h1>
+    <p class="meta"><span>DIAL Lab, SKKU</span><span>industry collaboration</span><span>2025–2026</span></p>
+
+    <div class="todo">
+      <b>Check the confidentiality terms before publishing</b>
+      <p>This was contracted industry work. Before this page goes live, confirm with Prof. Lee what you may disclose: whether the partner can be named, whether the domain can be described, and whether any schema detail, sample question, or figure derived from their data can appear. Assume no until told otherwise.</p>
+      <p>If the answer is restrictive, the methodology usually survives in the abstract even when the specifics do not — write it as "a manufacturing client" with no schema detail. That version is still worth publishing.</p>
+    </div>
+
+    <h3>The problem</h3>
+
+    <p>The goal was a system where someone at a manufacturing company could ask a question in plain Korean or English and get an answer out of a production database, without knowing SQL or the schema.</p>
+
+    <p>The obstacle was data. We had a few dozen real sample queries and nothing else — no training set, and no database we were allowed to develop against. Everything had to be constructed before any modelling could start.</p>
+
+    <h3>Building the dataset</h3>
+
+    <p>Working with a graduate student, we built a synthetic database consistent with the client's samples, then generated 5,000 question–SQL pairs against it: programmatic generation for the query structures, LLM paraphrasing for natural-language variation, and manual validation of the result.</p>
+
+    <div class="todo">
+      <b>Write this section yourself</b>
+      <p>The interesting part is not that you generated data — it is what went wrong. LLM paraphrasing collapses toward a house style. Programmatic generation produces queries no human would ask. Manual validation is slow and inconsistent between annotators.</p>
+      <p>Describe what you actually hit and how you handled it. This is the part a reader will find credible, because anyone who has built a dataset has had the same problems.</p>
+    </div>
+
+    <h3>Measuring coverage</h3>
+
+    <p>A generated dataset can look large and still be narrow. Because we controlled generation, we could also inspect it: I proposed measuring diversity through the distribution of pairwise cosine similarity between question embeddings, and using its shape to detect where generation was clustering — then correcting the sampling and regenerating.</p>
+
+    <div class="todo">
+      <b>Add a figure here</b>
+      <p>A single plot of the similarity distribution, before and after correction, would carry this section. It is the most transferable idea on the page — data curation and coverage measurement matter in almost every empirical ML setting, including simulation and world models.</p>
+      <p>Only publish it if the confidentiality check above allows it, and generate it from data you are permitted to show.</p>
+    </div>
+
+    <h3>The system</h3>
+
+    <p>We benchmarked several open-source models — Qwen2.5, Llama, and Codestral among them — and fine-tuned Qwen2.5, which performed best on our task.</p>
+
+    <p>The delivered system did not use the fine-tuned model. The client wanted the freedom to swap in a commercial API later, so we built a model-agnostic few-shot pipeline that draws on the training set without depending on any particular model's weights. It gave up some accuracy for the ability to change models without retraining.</p>
+
+    <div class="todo">
+      <b>Optional, but worth writing</b>
+      <p>One paragraph on that trade-off. How much accuracy did it cost? Do you think it was the right call? A candid engineering judgment, including one you might disagree with, reads well.</p>
+    </div>
+
+    <h3>My role</h3>
+
+    <p>A graduate student led the project. I proposed the diversity and coverage metrics, worked on dataset generation and manual validation, and contributed to the model side — benchmarking open-source models, testing prompting strategies, and building out the inference pipeline.</p>
+
+  </main>
+
+  <footer>
+    <span><a href="index.html">← Home</a></span>
+    <span>Last updated August 2026</span>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cheol Kim</title>
+<meta name="description" content="Cheol Kim — undergraduate researcher at Sungkyunkwan University working on language models over structured data.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <a class="who" href="index.html">Cheol Kim <span style="font-weight:400;color:var(--faint)">김철</span></a>
+    <nav>
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="ambiguity-text-to-sql.html">Ambiguity</a>
+      <a href="nl2sql-manufacturing.html">Text-to-SQL</a>
+      <a href="assets/Cheol_Kim_CV.pdf">CV</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <h1>Undergraduate researcher, Sungkyunkwan University</h1>
+
+    <div class="todo">
+      <b>Write this yourself — highest priority</b>
+      <p>Replace the two paragraphs below. They are placeholders assembled from your CV, and they read like it. This is the first thing a PI sees after clicking through, and it is the one place on the site where your own voice does the work.</p>
+      <p>Two paragraphs, plain first person. First: what problem you actually find interesting and why — the honest version, not the interests line. Second: where you want to take it next, and why this lab. Avoid "passionate," "cutting-edge," and anything you would not say out loud to the professor.</p>
+    </div>
+
+    <p class="lede">I work on how language models handle underspecified questions over structured data — what happens when a question has more than one correct reading, and how a system can find the plausible readings instead of guessing at one.</p>
+
+    <p>I have spent the past year at <a href="https://dial.skku.edu/">DIAL Lab</a> under Prof. Jongwuk Lee, working on Text-to-SQL: first on an industry system for querying a manufacturing database, then on a method for resolving ambiguous questions. I am finishing my B.S. in Computer Science and Engineering in August 2027.</p>
+
+    <ul class="contact">
+      <li><span class="k">email</span> <a href="mailto:metalseaweed@g.skku.edu">metalseaweed@g.skku.edu</a></li>
+      <li><span class="k">cv</span> <a href="assets/Cheol_Kim_CV.pdf">PDF</a></li>
+      <li><span class="k">github</span> <a href="https://github.com/cheolkim02">cheolkim02</a></li>
+    </ul>
+
+    <section>
+      <h2>Research</h2>
+
+      <div class="entry">
+        <h3><a href="ambiguity-text-to-sql.html">Ambiguity resolution for Text-to-SQL</a></h3>
+        <p class="meta"><span>DIAL Lab</span><span>2026</span><span>with a first-year Ph.D. student</span></p>
+        <p>A training-free method for questions that have several valid SQL readings. Rather than committing to one interpretation, it enumerates candidates, prunes them against what is actually in the database, and expands only the spans that remain genuinely underspecified — returning about five candidate queries instead of one guess.</p>
+        <p class="more"><a href="ambiguity-text-to-sql.html">How it works →</a></p>
+      </div>
+
+      <div class="entry">
+        <h3><a href="nl2sql-manufacturing.html">Text-to-SQL for manufacturing databases</a></h3>
+        <p class="meta"><span>DIAL Lab × industry</span><span>2025–2026</span></p>
+        <p>A natural-language interface to a production database, built with an industry partner. My work was mostly on the data: how to generate a training set that covers the question space instead of clustering, and how to measure whether it does.</p>
+        <p class="more"><a href="nl2sql-manufacturing.html">How it works →</a></p>
+      </div>
+
+      <div class="todo">
+        <b>Consider adding a third entry</b>
+        <p>Everything above is language-to-database work. If you are applying to a physical AI or world-models lab, one small self-directed project in that area — a paper reproduction, a simulation experiment, an implementation writeup — would do more than any statement of interest can.</p>
+        <p>It does not need to be large. It needs to be real, finished, and explained in your own words.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Experience</h2>
+      <div class="row">
+        <span class="what">Samsung SDS — Summer Intern, ERP Technical Team</span>
+        <span class="when">Jun–Aug 2026</span>
+        <span class="note">One of five interns selected company-wide through nationwide open recruitment. Completed an SAP ERP integration consulting assignment and presented it to department leadership.</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>Teaching</h2>
+      <div class="row">
+        <span class="what">Teaching Assistant — Freshmen Programming Preparatory Course, SKKU</span>
+        <span class="when">Feb 2025</span>
+        <span class="note">Advised student-led team projects in a two-week Python course.</span>
+      </div>
+      <div class="row">
+        <span class="what">Instructor — Introductory Programming, Suwon Christian International School</span>
+        <span class="when">Mar–Jul 2025</span>
+        <span class="note">Taught Python and computing to middle and high school student groups.</span>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <span>Cheol Kim · Suwon, Korea</span>
+    <span>Last updated <!-- keep this honest -->August 2026</span>
+  </footer>
+
+</div>
+</body>
+</html>

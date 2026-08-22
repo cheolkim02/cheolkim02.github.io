@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ambiguity resolution for Text-to-SQL — Cheol Kim</title>
+<meta name="description" content="A training-free method for resolving ambiguous natural-language questions over databases.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <a class="who" href="index.html">Cheol Kim <span style="font-weight:400;color:var(--faint)">김철</span></a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="ambiguity-text-to-sql.html" aria-current="page">Ambiguity</a>
+      <a href="nl2sql-manufacturing.html">Text-to-SQL</a>
+      <a href="assets/Cheol_Kim_CV.pdf">CV</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <h1>Ambiguity resolution for Text-to-SQL</h1>
+    <p class="meta"><span>DIAL Lab, SKKU</span><span>4 months, 2026</span><span>with a first-year Ph.D. student</span></p>
+
+    <div class="todo">
+      <b>Clear this with Prof. Lee and your co-author first</b>
+      <p>This page describes unpublished work that belongs to the lab and is co-authored. Before publishing: confirm what level of detail you may post, and do not post the manuscript PDF unless you are told you can. If the work may still go to a double-blind venue, a public writeup can create a problem for your collaborators.</p>
+      <p>If they prefer you hold off, say so in one line on the homepage instead — "an unpublished project on ambiguity in Text-to-SQL" — and skip this page.</p>
+    </div>
+
+    <h3>The problem</h3>
+
+    <p>A Text-to-SQL system takes a question in English and a database schema, and produces a query. The standard evaluation assumes there is one right answer. Often there isn't.</p>
+
+    <div class="todo">
+      <b>Write this section yourself</b>
+      <p>Give one concrete example of an ambiguous question against a small schema, and show the two or three queries a reasonable person could write for it. A worked example does more here than any amount of description — a reader from a different subfield will understand the whole problem from it in ten seconds.</p>
+      <p>Then say why the usual approach — pick the single most likely query — is the wrong response to this, in your own words.</p>
+    </div>
+
+    <h3>The approach</h3>
+
+    <p>The method is training-free: it runs on top of an existing model with no fine-tuning. Rather than resolving ambiguity by ranking, it treats the database itself as the disambiguating evidence, and narrows a candidate set in stages.</p>
+
+    <figure>
+      <div class="pipeline">
+        <div class="stage">
+          <span class="n">01</span>
+          <span class="t">Enumerate</span>
+          <div class="dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <p class="d">Generate the readings the question could plausibly have, and a candidate query for each.</p>
+        </div>
+        <div class="stage">
+          <span class="n">02</span>
+          <span class="t">Prune</span>
+          <div class="dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="gone"></i><i class="gone"></i><i class="gone"></i><i class="gone"></i><i class="gone"></i><i class="gone"></i><i class="gone"></i><i class="gone"></i></div>
+          <p class="d">Scan the database and discard candidates that its contents rule out entirely.</p>
+        </div>
+        <div class="stage">
+          <span class="n">03</span>
+          <span class="t">Ground</span>
+          <div class="dots"><i></i><i></i><i></i><i></i><i class="gone"></i><i class="gone"></i><i class="gone"></i><i class="gone"></i><i class="gone"></i><i class="gone"></i><i class="gone"></i><i class="gone"></i><i class="gone"></i><i class="gone"></i><i class="gone"></i><i class="gone"></i></div>
+          <p class="d">Fix the spans that have only one reading given the data, so they stop multiplying candidates.</p>
+        </div>
+        <div class="stage">
+          <span class="n">04</span>
+          <span class="t">Expand</span>
+          <div class="dots"><i></i><i></i><i></i><i></i><i></i><i class="gone"></i><i class="gone"></i><i class="gone"></i><i class="gone"></i><i class="gone"></i><i class="gone"></i><i class="gone"></i><i class="gone"></i><i class="gone"></i><i class="gone"></i><i class="gone"></i></div>
+          <p class="d">Iterate only over the spans that remain genuinely underspecified, producing the final set.</p>
+        </div>
+      </div>
+      <figcaption>The candidate set narrows at each stage. Grounding matters because an unresolved span multiplies against every other unresolved span — fixing the certain ones early keeps the final set small. <strong>Check that this diagram matches what you actually built, and correct it if not.</strong></figcaption>
+    </figure>
+
+    <div class="todo">
+      <b>Write this section yourself — this is the most valuable content on the site</b>
+      <p>Explain <em>why</em> the method is shaped this way. Why prune before grounding rather than after? What made you treat database contents as evidence instead of ranking with the model? What did you try first that did not work?</p>
+      <p>Design reasoning and dead ends are what a PI cannot get from your CV, and are the closest thing to a writing sample you have. Two or three paragraphs is enough. Do not polish the failures out.</p>
+    </div>
+
+    <h3>Results</h3>
+
+    <p>On <strong>AMBIQT</strong>, a benchmark built specifically for ambiguous questions, the method improved recall by <strong>11.2%</strong> over training-free zero-shot baselines while returning an average of five candidate queries — the point being that recall is cheap if you return everything, so the size of the candidate set matters as much as the recall number.</p>
+
+    <p>We evaluated across five Text-to-SQL benchmarks including BIRD, Spider, Ambrosia, and Kaggle DBQA, and reproduced eight baseline systems, four of which were positioned closely enough to compare against directly.</p>
+
+    <div class="todo">
+      <b>Add the limitations — do not skip this</b>
+      <p>Where does the method underperform? What kinds of ambiguity does it miss? What is the cost of the database scan on a large schema? What would you do differently with another two months?</p>
+      <p>Undergraduates almost never write this section, and it reads as maturity rather than weakness. It is also the section most likely to make a PI want to talk to you.</p>
+    </div>
+
+    <h3>My role</h3>
+
+    <p>The project was joint work with a first-year Ph.D. student over four months. We developed the method together; I ran experiments on our method and on the baselines, carried out error analysis and human validation of the outputs, and co-wrote the manuscript, including the abstract and implementation details. The paper was prepared for VLDB but not submitted.</p>
+
+    <div class="todo">
+      <b>Optional: one honest line on why it was not submitted</b>
+      <p>Only if you can say it plainly and without blaming anyone. If it would take more than a sentence, leave it out — a PI who cares will ask, and answering in person is better.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <span><a href="index.html">← Home</a></span>
+    <span>Last updated August 2026</span>
+  </footer>
+
+</div>
+</body>
+</html>
