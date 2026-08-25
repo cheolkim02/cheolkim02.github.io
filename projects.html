@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Projects - Cheol Kim</title>
+<meta name="description" content="Projects by Cheol Kim, including a natural-language interface to a manufacturing database.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-in">
+    <a class="brand" href="index.html">Cheol Kim</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="research.html">Research</a>
+      <a href="projects.html" class="on">Projects</a>
+      <a href="assets/Cheol_Kim_CV.pdf">CV</a>
+    </div>
+  </div>
+</nav>
+
+<div class="shell">
+
+  <aside class="profile">
+    <img class="portrait" src="assets/portrait.jpg" alt="Cheol Kim"
+         onerror="this.style.display='none';document.getElementById('nophoto').style.display='grid'">
+    <div id="nophoto" class="portrait" style="display:none;place-items:center;font-size:12px;color:#9aa1a9;text-align:center;padding:12px">
+      Add a portrait at<br><code>assets/portrait.jpg</code>
+    </div>
+    <h1 class="pname">Cheol Kim <span class="phangul">김철</span></h1>
+    <p class="prole">Undergraduate Research Intern<br>@ DIAL Lab, SKKU</p>
+    <p class="pmail"><a href="mailto:metalseaweed@g.skku.edu">metalseaweed(at)g.skku.edu</a></p>
+  </aside>
+
+  <main>
+
+    <section class="sec">
+      <h2>Projects</h2>
+      <p>Applied and industry work, as distinct from the research on the <a href="research.html">research page</a>.</p>
+    </section>
+
+    <section class="sec">
+      <h2>Text-to-SQL for Manufacturing Databases</h2>
+
+      <div class="pub" style="border-bottom:0;padding-top:4px">
+        <div class="thumb">Add a coverage figure at<br><code>assets/nl2sql.png</code></div>
+        <div class="pub-b">
+          <p class="authors">Industry–university collaboration — DIAL Lab, SKKU</p>
+          <p class="venue">2025 – 2026 · led by a graduate student</p>
+          <p class="desc">A plain-language interface to a client production database. We had a few dozen sample queries, no training set, and no database we were allowed to develop against, so most of the work happened before any modelling could start.</p>
+        </div>
+      </div>
+
+      <div class="todo">
+        <b>Check the confidentiality terms before publishing</b>
+        <p>This was contracted industry work. Confirm with Prof. Lee what you may disclose — whether the partner can be named, whether the domain can be described, and whether any schema detail, sample question, or data-derived figure can appear. Assume no until told otherwise. If the answer is restrictive, write it as "a manufacturing client" with no schema detail; that version is still worth publishing.</p>
+      </div>
+
+      <h3 style="color:var(--ink);font-size:15.5px;margin:22px 0 6px">Building the dataset</h3>
+      <p>Working with a graduate student, we built a synthetic database consistent with the client's samples, then generated 5,000 question–SQL pairs against it: programmatic generation for the query structures, LLM paraphrasing for natural-language variation, and manual validation throughout.</p>
+
+      <div class="todo">
+        <b>Write this section yourself</b>
+        <p>The interesting part is what went wrong. LLM paraphrasing collapses toward a house style. Programmatic generation produces queries no human would ask. Manual validation is slow and inconsistent between annotators. Describe what you actually hit — anyone who has built a dataset has had the same problems, which is what makes it credible.</p>
+      </div>
+
+      <h3 style="color:var(--ink);font-size:15.5px;margin:22px 0 6px">Measuring coverage</h3>
+      <p>A generated dataset can be large and still be narrow. I proposed measuring diversity through the distribution of pairwise cosine similarity between question embeddings, using its shape to find where generation was clustering, then correcting the sampling and regenerating. This is the most transferable idea from the project — coverage measurement matters wherever you build your own data, including simulation.</p>
+
+      <div class="todo">
+        <b>Add a figure here</b>
+        <p>One plot of the similarity distribution, before and after correction, would carry this whole section. Only publish it if the confidentiality check above allows, and generate it from data you are permitted to show.</p>
+      </div>
+
+      <h3 style="color:var(--ink);font-size:15.5px;margin:22px 0 6px">The system</h3>
+      <p>We benchmarked open-source models — Qwen2.5, Llama and Codestral among them — and fine-tuned Qwen2.5, which performed best. The delivered system did not use the fine-tuned model: the client wanted the freedom to swap in a commercial API later, so we built a model-agnostic few-shot pipeline that draws on the training set without depending on any particular model's weights. It traded accuracy for the ability to change models without retraining.</p>
+
+      <h3 style="color:var(--ink);font-size:15.5px;margin:22px 0 6px">My role</h3>
+      <p>A graduate student led the project. I proposed the diversity and coverage metrics, worked on dataset generation and manual validation, and contributed to the model side — benchmarking open-source models, testing prompting strategies, and building out the inference pipeline.</p>
+    </section>
+
+    <section class="sec">
+      <h2>Next Project</h2>
+      <div class="todo" style="margin-top:4px">
+        <b>This slot is the most valuable empty space on the site</b>
+        <p>Everything above is language-to-database work. If you are applying to a physical AI, VLA or world-models lab, one small self-directed project in that area — a paper reproduction, a MuJoCo or Isaac experiment, an implementation writeup — will do more than any interests line can.</p>
+        <p>It does not need to be large. It needs to be real, finished, and explained in your own words. Copy the block structure above once you have it, and delete this section in the meantime.</p>
+      </div>
+    </section>
+
+    <div class="updated">
+      <span>Last updated: Aug 2026</span>
+      <span><a href="index.html">← Home</a></span>
+    </div>
+
+  </main>
+</div>
+
+</body>
+</html>

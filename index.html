@@ -2,98 +2,223 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cheol Kim</title>
-<meta name="description" content="Cheol Kim — undergraduate researcher at Sungkyunkwan University working on language models over structured data.">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Homepage - Cheol Kim</title>
+<meta name="description" content="Cheol Kim — undergraduate researcher at Sungkyunkwan University, working on language interfaces to structured data.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="wrap">
 
-  <header class="masthead">
-    <a class="who" href="index.html">Cheol Kim <span style="font-weight:400;color:var(--faint)">김철</span></a>
-    <nav>
-      <a href="index.html" aria-current="page">Home</a>
-      <a href="ambiguity-text-to-sql.html">Ambiguity</a>
-      <a href="nl2sql-manufacturing.html">Text-to-SQL</a>
+<nav class="nav">
+  <div class="nav-in">
+    <a class="brand" href="index.html">Cheol Kim</a>
+    <div class="nav-links">
+      <a href="index.html" class="on">Home</a>
+      <a href="research.html">Research</a>
+      <a href="projects.html">Projects</a>
       <a href="assets/Cheol_Kim_CV.pdf">CV</a>
-    </nav>
-  </header>
+    </div>
+  </div>
+</nav>
 
-  <main>
+<div class="shell">
 
-    <h1>Undergraduate researcher, Sungkyunkwan University</h1>
-
-    <div class="todo">
-      <b>Write this yourself — highest priority</b>
-      <p>Replace the two paragraphs below. They are placeholders assembled from your CV, and they read like it. This is the first thing a PI sees after clicking through, and it is the one place on the site where your own voice does the work.</p>
-      <p>Two paragraphs, plain first person. First: what problem you actually find interesting and why — the honest version, not the interests line. Second: where you want to take it next, and why this lab. Avoid "passionate," "cutting-edge," and anything you would not say out loud to the professor.</p>
+  <!-- ============ profile sidebar ============ -->
+  <aside class="profile">
+    <img class="portrait" src="assets/portrait.jpg" alt="Cheol Kim"
+         onerror="this.style.display='none';document.getElementById('nophoto').style.display='grid'">
+    <div id="nophoto" class="portrait" style="display:none;place-items:center;font-size:12px;color:#9aa1a9;text-align:center;padding:12px">
+      Add a portrait at<br><code>assets/portrait.jpg</code>
     </div>
 
-    <p class="lede">I work on how language models handle underspecified questions over structured data — what happens when a question has more than one correct reading, and how a system can find the plausible readings instead of guessing at one.</p>
+    <h1 class="pname">Cheol Kim <span class="phangul">김철</span></h1>
+    <p class="prole">Undergraduate Research Intern<br>@ DIAL Lab, SKKU</p>
+    <p class="pmail"><a href="mailto:metalseaweed@g.skku.edu">metalseaweed(at)g.skku.edu</a></p>
 
-    <p>I have spent the past year at <a href="https://dial.skku.edu/">DIAL Lab</a> under Prof. Jongwuk Lee, working on Text-to-SQL: first on an industry system for querying a manufacturing database, then on a method for resolving ambiguous questions. I am finishing my B.S. in Computer Science and Engineering in August 2027.</p>
+    <div class="picons">
+      <a href="https://github.com/cheolkim02" aria-label="GitHub" title="GitHub">
+        <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+      </a>
+      <a href="assets/Cheol_Kim_CV.pdf" aria-label="CV" title="Curriculum vitae">
+        <svg viewBox="0 0 16 16"><path d="M4 0h5.5L14 4.5V15a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V1a1 1 0 0 1 1-1zm5 1.5V5h3.5L9 1.5zM5 8h6v1H5V8zm0 2.5h6v1H5v-1z"/></svg>
+      </a>
+    </div>
+  </aside>
 
-    <ul class="contact">
-      <li><span class="k">email</span> <a href="mailto:metalseaweed@g.skku.edu">metalseaweed@g.skku.edu</a></li>
-      <li><span class="k">cv</span> <a href="assets/Cheol_Kim_CV.pdf">PDF</a></li>
-      <li><span class="k">github</span> <a href="https://github.com/cheolkim02">cheolkim02</a></li>
-    </ul>
+  <!-- ============ main column ============ -->
+  <main>
 
-    <section>
-      <h2>Research</h2>
+    <!-- About -->
+    <section class="sec">
+      <h2>About Me</h2>
 
-      <div class="entry">
-        <h3><a href="ambiguity-text-to-sql.html">Ambiguity resolution for Text-to-SQL</a></h3>
-        <p class="meta"><span>DIAL Lab</span><span>2026</span><span>with a first-year Ph.D. student</span></p>
-        <p>A training-free method for questions that have several valid SQL readings. Rather than committing to one interpretation, it enumerates candidates, prunes them against what is actually in the database, and expands only the spans that remain genuinely underspecified — returning about five candidate queries instead of one guess.</p>
-        <p class="more"><a href="ambiguity-text-to-sql.html">How it works →</a></p>
+      <div class="affil">
+        <span class="affil-item"><span class="badge badge--skku">SKKU</span> Computer Science &amp; Engineering @ Sungkyunkwan Univ.</span>
+        <span class="affil-item"><span class="badge badge--dial">DIAL</span> Undergraduate Research Intern @ DIAL Lab</span>
       </div>
 
-      <div class="entry">
-        <h3><a href="nl2sql-manufacturing.html">Text-to-SQL for manufacturing databases</a></h3>
-        <p class="meta"><span>DIAL Lab × industry</span><span>2025–2026</span></p>
-        <p>A natural-language interface to a production database, built with an industry partner. My work was mostly on the data: how to generate a training set that covers the question space instead of clustering, and how to measure whether it does.</p>
-        <p class="more"><a href="nl2sql-manufacturing.html">How it works →</a></p>
+      <p>I am majoring in Computer Science and Engineering at Sungkyunkwan University.<br>
+      <b>My research goal</b> is to build systems that ground language in the state of the world they act on — resolving what a request actually means before committing to an action.</p>
+
+      <div class="todo">
+        <b>Rewrite this in your own words</b>
+        <p>The research-goal sentence above is drafted from your CV, and it is the single most-read line on the site. Say what you actually care about, in the phrasing you would use out loud to a professor. One or two sentences.</p>
+        <p>The template links a keyword in that sentence to a reference page — that is a nice touch if there is a concept you want to point at.</p>
+      </div>
+
+      <div class="interest">
+        <h3>Language Interfaces to Structured Data</h3>
+        <ul>
+          <li>Ambiguity resolution in Text-to-SQL</li>
+          <li>Data generation and coverage measurement for NL-to-code tasks</li>
+        </ul>
+
+        <h3>Physical AI &amp; Agentic Systems</h3>
+        <ul>
+          <li>Grounding instructions against world state</li>
+          <li>Vision-Language-Action models and world models</li>
+        </ul>
       </div>
 
       <div class="todo">
-        <b>Consider adding a third entry</b>
-        <p>Everything above is language-to-database work. If you are applying to a physical AI or world-models lab, one small self-directed project in that area — a paper reproduction, a simulation experiment, an implementation writeup — would do more than any statement of interest can.</p>
-        <p>It does not need to be large. It needs to be real, finished, and explained in your own words.</p>
+        <b>Back the second interest block with something, or cut it</b>
+        <p>You have no physical AI work yet, and a PI will notice an interest listed with nothing behind it. Either add one small self-directed project under <a href="projects.html">Projects</a> — a paper reproduction, a MuJoCo experiment, an implementation writeup — or remove the block and make the case in your statement of purpose instead.</p>
       </div>
     </section>
 
-    <section>
+    <!-- Education -->
+    <section class="sec">
+      <h2>Education</h2>
+
+      <div class="item">
+        <span class="badge badge--skku">SKKU</span>
+        <div class="item-b">
+          <div class="org">Sungkyunkwan University. Suwon, South Korea</div>
+          <div class="sub">B.S. Student in Computer Science and Engineering</div>
+          <div class="adv">Cumulative GPA 3.93 / 4.5 · Major GPA 4.12 / 4.5</div>
+        </div>
+        <div class="when">Mar. 2022 ‑ Aug. 2027 (expected)</div>
+      </div>
+
+      <div class="item">
+        <span class="badge badge--mhs">MHS</span>
+        <div class="item-b">
+          <div class="org">McLean High School. Virginia, United States</div>
+        </div>
+        <div class="when">Aug. 2018 ‑ Jun. 2021</div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="sec">
       <h2>Experience</h2>
-      <div class="row">
-        <span class="what">Samsung SDS — Summer Intern, ERP Technical Team</span>
-        <span class="when">Jun–Aug 2026</span>
-        <span class="note">One of five interns selected company-wide through nationwide open recruitment. Completed an SAP ERP integration consulting assignment and presented it to department leadership.</span>
+
+      <div class="item">
+        <span class="badge badge--dial">DIAL</span>
+        <div class="item-b">
+          <div class="org">SKKU, DIAL Lab</div>
+          <div class="adv">Advised by Prof. Jongwuk Lee</div>
+          <div class="role">Undergraduate Research Intern</div>
+        </div>
+        <div class="when">Aug. 2025 ‑ Aug. 2026</div>
+      </div>
+
+      <div class="item">
+        <span class="badge badge--sds">SDS</span>
+        <div class="item-b">
+          <div class="org">Samsung SDS</div>
+          <div class="adv">Architecture Group, ERP Technical Team</div>
+          <div class="role">Summer Intern</div>
+        </div>
+        <div class="when">Jun. 2026 ‑ Aug. 2026</div>
+      </div>
+
+      <div class="item">
+        <span class="badge badge--scis">SCIS</span>
+        <div class="item-b">
+          <div class="org">Suwon Christian International School</div>
+          <div class="adv">Introductory Programming</div>
+          <div class="role">Instructor</div>
+        </div>
+        <div class="when">Mar. 2025 ‑ Jul. 2025</div>
+      </div>
+
+      <div class="item">
+        <span class="badge badge--skku">SKKU</span>
+        <div class="item-b">
+          <div class="org">SKKU, Freshmen Programming Preparatory Course</div>
+          <div class="role">Teaching Assistant</div>
+        </div>
+        <div class="when">Feb. 2025</div>
       </div>
     </section>
 
-    <section>
-      <h2>Teaching</h2>
-      <div class="row">
-        <span class="what">Teaching Assistant — Freshmen Programming Preparatory Course, SKKU</span>
-        <span class="when">Feb 2025</span>
-        <span class="note">Advised student-led team projects in a two-week Python course.</span>
+    <!-- Honors -->
+    <section class="sec">
+      <h2>Honors &amp; Awards</h2>
+
+      <div class="award">
+        <span class="txt"><b>Selected as 1 of 5 interns company-wide</b>, Samsung SDS nationwide open recruitment</span>
+        <span class="yr">2026</span>
       </div>
-      <div class="row">
-        <span class="what">Instructor — Introductory Programming, Suwon Christian International School</span>
-        <span class="when">Mar–Jul 2025</span>
-        <span class="note">Taught Python and computing to middle and high school student groups.</span>
+      <div class="award">
+        <span class="txt"><b>Top 5 of 28 teams</b>, SKKU Freshmen Programming Preparatory Course, by TA evaluation and student vote</span>
+        <span class="yr">2025</span>
+      </div>
+
+      <div class="todo">
+        <b>Thin section — add anything you have</b>
+        <p>Scholarships, dean's list, hackathons, competition placements, department awards. The reference site lists ten; two looks sparse next to it. If you have nothing more, delete this section entirely rather than leave it looking short — an absent section reads better than an empty one.</p>
       </div>
     </section>
+
+    <!-- Research -->
+    <section class="sec">
+      <h2>Selected Research <a class="all" href="research.html">(view all →)</a></h2>
+
+      <div class="pub">
+        <div class="thumb">Add a figure at<br><code>assets/ambiguity.png</code></div>
+        <div class="pub-b">
+          <h3>Ambiguity Resolution for Text-to-SQL</h3>
+          <p class="authors"><span class="me">Cheol Kim</span>, with a first-year Ph.D. student — DIAL Lab, SKKU</p>
+          <p class="venue">Manuscript prepared for <i>VLDB</i> 2026 <span class="status">Not submitted</span></p>
+          <p class="desc">A training-free method for natural-language questions that admit several valid SQL readings. Candidate interpretations are enumerated, pruned against database contents, grounded where only one reading survives, and expanded only over the spans that remain underspecified — improving recall by 11.2% over training-free zero-shot baselines on AMBIQT while returning about five candidate queries.</p>
+          <p class="taglinks"><a href="research.html">[Details]</a></p>
+        </div>
+      </div>
+
+      <div class="todo">
+        <b>Clear this with Prof. Lee and your co-author before publishing</b>
+        <p>This is unpublished, co-authored lab work. Confirm what you may post and do not put the manuscript online without explicit approval — a public writeup can compromise a later double-blind submission. Keep the <i>Not submitted</i> label: listing an unsubmitted manuscript without one reads as padding, and with one it reads as honest.</p>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="sec">
+      <h2>Selected Projects <a class="all" href="projects.html">(view all →)</a></h2>
+
+      <div class="pub">
+        <div class="thumb">Add a figure at<br><code>assets/nl2sql.png</code></div>
+        <div class="pub-b">
+          <h3>Text-to-SQL for Manufacturing Databases</h3>
+          <p class="authors">Industry–university collaboration — DIAL Lab, SKKU</p>
+          <p class="venue">2025 – 2026</p>
+          <p class="desc">A natural-language interface for querying a client production database. Built a 5,000-pair question–SQL dataset with a graduate student, combining programmatic generation with LLM paraphrasing and manual validation. Proposed diversity and coverage metrics over question embeddings to detect and correct sampling bias. Benchmarked Qwen2.5, Llama and Codestral, and delivered a model-agnostic few-shot pipeline so the client could substitute commercial APIs without retraining.</p>
+          <p class="taglinks"><a href="projects.html">[Details]</a></p>
+        </div>
+      </div>
+    </section>
+
+    <div class="updated">
+      <span>Last updated: Aug 2026</span>
+      <span>Layout after <a href="https://github.com/luost26/academic-homepage">academic-homepage</a></span>
+    </div>
 
   </main>
-
-  <footer>
-    <span>Cheol Kim · Suwon, Korea</span>
-    <span>Last updated <!-- keep this honest -->August 2026</span>
-  </footer>
-
 </div>
+
 </body>
 </html>

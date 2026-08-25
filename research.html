@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Research - Cheol Kim</title>
+<meta name="description" content="Research by Cheol Kim on ambiguity in language interfaces to structured data.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-in">
+    <a class="brand" href="index.html">Cheol Kim</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="research.html" class="on">Research</a>
+      <a href="projects.html">Projects</a>
+      <a href="assets/Cheol_Kim_CV.pdf">CV</a>
+    </div>
+  </div>
+</nav>
+
+<div class="shell">
+
+  <aside class="profile">
+    <img class="portrait" src="assets/portrait.jpg" alt="Cheol Kim"
+         onerror="this.style.display='none';document.getElementById('nophoto').style.display='grid'">
+    <div id="nophoto" class="portrait" style="display:none;place-items:center;font-size:12px;color:#9aa1a9;text-align:center;padding:12px">
+      Add a portrait at<br><code>assets/portrait.jpg</code>
+    </div>
+    <h1 class="pname">Cheol Kim <span class="phangul">김철</span></h1>
+    <p class="prole">Undergraduate Research Intern<br>@ DIAL Lab, SKKU</p>
+    <p class="pmail"><a href="mailto:metalseaweed@g.skku.edu">metalseaweed(at)g.skku.edu</a></p>
+  </aside>
+
+  <main>
+
+    <section class="sec">
+      <h2>Research</h2>
+      <p>My research so far has been on Text-to-SQL: translating questions asked in plain language into queries over a database. The thread running through it is what happens when the question does not have a single correct answer.</p>
+    </section>
+
+    <section class="sec">
+      <h2>Ambiguity Resolution for Text-to-SQL</h2>
+
+      <div class="pub" style="border-bottom:0;padding-top:4px">
+        <div class="thumb">Add a pipeline figure at<br><code>assets/ambiguity.png</code></div>
+        <div class="pub-b">
+          <p class="authors"><span class="me">Cheol Kim</span>, with a first-year Ph.D. student</p>
+          <p class="venue">DIAL Lab, SKKU · four months, 2026 · prepared for <i>VLDB</i> <span class="status">Not submitted</span></p>
+          <p class="desc">Improved recall by <b>11.2%</b> over training-free zero-shot baselines on AMBIQT while returning an average of five candidate queries. Evaluated across BIRD, Spider, AMBIQT, Ambrosia and Kaggle DBQA; eight baseline systems reproduced, four positioned closely enough for direct comparison.</p>
+        </div>
+      </div>
+
+      <div class="todo">
+        <b>Clear this page with Prof. Lee and your co-author first</b>
+        <p>Unpublished, co-authored lab work. Confirm what level of detail you may post, and do not put the manuscript PDF online without explicit approval — if it may still go to a double-blind venue, a public writeup can create a problem for your collaborators. If they prefer you hold off, keep the one-line entry on the homepage and drop this page.</p>
+      </div>
+
+      <h3 style="color:var(--ink);font-size:15.5px;margin:22px 0 6px">Problem</h3>
+      <p>A Text-to-SQL system takes a question and a schema and returns a query. Evaluation almost always assumes there is one right answer. Ask a person for "the top customers last quarter" and you get a follow-up question instead — top by what, and which quarter?</p>
+
+      <div class="todo">
+        <b>Write this section yourself</b>
+        <p>Give one concrete ambiguous question against a small schema and show the two or three queries a reasonable person could write for it. A worked example does more than any description — a reader from another subfield will get the whole problem in ten seconds. Then say why ranking and picking the single most likely query is the wrong response.</p>
+      </div>
+
+      <h3 style="color:var(--ink);font-size:15.5px;margin:22px 0 6px">Method</h3>
+      <p>The method is training-free and treats the database itself as the evidence for disambiguation, narrowing a candidate set in four stages: enumerate the readings the question could plausibly have; prune the ones the database contents rule out; ground the spans that have only one surviving reading; then iterate only over the spans that remain genuinely underspecified. Grounding matters because every unresolved span multiplies against every other one, so fixing the certain ones early is what keeps the final set small.</p>
+
+      <div class="todo">
+        <b>Write this section yourself — the most valuable content on the site</b>
+        <p>Explain <i>why</i> the method is shaped this way. Why prune before grounding rather than after? What made you treat database contents as evidence instead of ranking with the model? What did you try first that did not work?</p>
+        <p>Design reasoning and dead ends are what a PI cannot get from your CV, and this is the closest thing to a writing sample you have. Two or three paragraphs.</p>
+      </div>
+
+      <h3 style="color:var(--ink);font-size:15.5px;margin:22px 0 6px">Results</h3>
+      <p>On AMBIQT, a benchmark built specifically for ambiguous questions, recall improved by 11.2% over training-free zero-shot baselines with an average of five candidate queries returned. The candidate count is the point: recall is trivially cheap if you return everything, so the size of the set matters as much as the number attached to it.</p>
+
+      <div class="todo">
+        <b>Add limitations — do not skip this</b>
+        <p>Where does the method underperform? What kinds of ambiguity does it miss entirely? What does the database scan cost on a large schema? Undergraduates almost never write a limitations section, and it reads as maturity rather than weakness. It is also the section most likely to make a PI want to talk to you.</p>
+      </div>
+
+      <h3 style="color:var(--ink);font-size:15.5px;margin:22px 0 6px">My role</h3>
+      <p>Joint work with a first-year Ph.D. student over four months. We developed the method together. I ran the experiments on our method and on the baselines, carried out error analysis and human validation of the outputs, and co-wrote the manuscript including the abstract and implementation details.</p>
+    </section>
+
+    <div class="updated">
+      <span>Last updated: Aug 2026</span>
+      <span><a href="index.html">← Home</a></span>
+    </div>
+
+  </main>
+</div>
+
+</body>
+</html>

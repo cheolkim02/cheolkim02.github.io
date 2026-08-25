@@ -1,52 +1,86 @@
 # cheolkim02.github.io
 
-Personal research site. Plain HTML and CSS — no build step, no JavaScript, no web fonts.
+Personal academic homepage. Static HTML and CSS — no Jekyll, no build step, no JavaScript beyond a portrait fallback.
+
+Layout follows [luost26/academic-homepage](https://github.com/luost26/academic-homepage): sticky profile sidebar on the left, sectioned content on the right.
+
+```
+index.html      About / Education / Experience / Honors / Selected Research / Selected Projects
+research.html   Ambiguity Resolution for Text-to-SQL, in full
+projects.html   Text-to-SQL for Manufacturing Databases, in full
+style.css       whole design system
+assets/         portrait, figures, CV — add these yourself
+```
 
 ## Deploy
 
-1. Create a repository on GitHub named exactly **`cheolkim02.github.io`**.
-2. Copy these files into it (`index.html` must be at the repository root).
-3. Add your CV as `assets/Cheol_Kim_CV.pdf`.
-4. Commit and push to the `main` branch.
-5. Repository → **Settings** → **Pages** → Source: *Deploy from a branch* → Branch: `main`, folder: `/ (root)` → Save.
+1. Create a GitHub repository named exactly **`cheolkim02.github.io`**.
+2. Copy these files in, with `index.html` at the root.
+3. Add your files to `assets/` (see below).
+4. Push to `main`.
+5. Settings → Pages → Source: *Deploy from a branch* → `main` / `(root)` → Save.
 
-Live at `https://cheolkim02.github.io` within a minute or two. Every push updates it.
+Live at `https://cheolkim02.github.io` within a minute or two.
 
-To preview locally: `python3 -m http.server` in this folder, then open `http://localhost:8000`.
+Preview locally with `python3 -m http.server`, then open `http://localhost:8000`.
 
-## Before publishing — checklist
+## Assets to add
 
-**Permissions first.** Both project pages carry flags about this. Do not publish either until resolved.
+| Path | What |
+|---|---|
+| `assets/portrait.jpg` | Square headshot, ~600×600. Plain and friendly. Placeholders show until it exists. |
+| `assets/Cheol_Kim_CV.pdf` | Same PDF you attach to emails. |
+| `assets/ambiguity.png` | Pipeline figure, 3:2. |
+| `assets/nl2sql.png` | Coverage/similarity plot, 3:2 — only if confidentiality allows. |
 
-- [ ] Ambiguity page cleared with Prof. Lee and your co-author. Do not post the manuscript PDF without explicit approval — the work may still go to a double-blind venue.
-- [ ] Wezon page checked against the confidentiality terms. Assume the partner name, schema, and any data-derived figure are restricted until told otherwise.
+Institution badges are CSS circles with initials, so nothing to download. To use real logos instead, drop an image inside the badge span:
 
-**Content.** Every red block on the site is a placeholder. Search the HTML for `class="todo"` — there should be zero left when you publish.
+```html
+<span class="badge badge--skku"><img src="assets/badges/skku.png" alt=""></span>
+```
 
-- [ ] Homepage intro rewritten in your own words (highest priority)
-- [ ] Worked example of an ambiguous question added
-- [ ] Design reasoning written — why the method is shaped the way it is, and what failed
-- [ ] Limitations section written
+## Before publishing
+
+**Permissions first.** Both detail pages carry a flag about this.
+
+- [ ] Research page cleared with Prof. Lee and your co-author. No manuscript PDF without explicit approval — the work may still go to a double-blind venue.
+- [ ] Projects page checked against the confidentiality terms. Partner name, schema, and data-derived figures restricted until you're told otherwise.
+
+**Content.** Search the HTML for `class="todo"` — every one is a placeholder, and there should be zero left when you publish.
+
+- [ ] Research-goal sentence on the homepage rewritten in your own words
+- [ ] Physical AI interest block either backed by a project or removed
+- [ ] Worked example of an ambiguous question written
+- [ ] "Why the method is shaped this way" written — highest-value section on the site
+- [ ] Limitations written
 - [ ] Dataset-building difficulties written
-- [ ] Pipeline diagram checked against what you actually built
-- [ ] Coverage figure added, if permitted
-- [ ] Third project considered — something in the lab's area
+- [ ] Honors section filled out or deleted
+- [ ] A third project added, ideally in the lab's area
 
 **Housekeeping.**
 
-- [ ] `assets/Cheol_Kim_CV.pdf` added and matching the version you send by email
-- [ ] GitHub account has something real on it, or the link is removed
-- [ ] DIAL Lab URL in `index.html` verified
-- [ ] "Last updated" date correct in all three footers
-- [ ] Opened on a phone on mobile data — no horizontal scroll, fast load
-- [ ] Someone technical but outside your subfield read it and could explain your method back to you
+- [ ] Portrait, CV and figures added to `assets/`
+- [ ] GitHub has something real on it, or the icon link is removed
+- [ ] "Last updated" correct on all three pages
+- [ ] Opened on a phone on mobile data
+- [ ] Someone technical but outside your subfield read it and could explain the method back
 
 ## Editing
 
-`style.css` holds the whole design. The variables at the top control colour and type:
+Tokens are at the top of `style.css`. The badge colours (`.badge--skku`, `--dial`, `--sds`, `--scis`, `--mhs`) are set there too.
 
-- `--accent` — the one accent colour, used for links and diagram fills
-- `--measure` — prose column width; keep it near 34rem so lines stay at 60–75 characters
-- `--serif` / `--mono` — serif for prose, monospace for structured metadata (dates, roles, labels)
+Adding an experience entry:
 
-The `.todo` block styling can be deleted from the CSS once every placeholder is gone.
+```html
+<div class="item">
+  <span class="badge badge--skku">SKKU</span>
+  <div class="item-b">
+    <div class="org">Organisation. City, Country</div>
+    <div class="adv">Advised by Prof. Name</div>
+    <div class="role">Your title</div>
+  </div>
+  <div class="when">Mon. YYYY ‑ Mon. YYYY</div>
+</div>
+```
+
+Adding a research or project card: copy a `.pub` block. Keep `<span class="me">Cheol Kim</span>` so your own name stays bold in author lists, and keep the `.status` label on anything unpublished.
