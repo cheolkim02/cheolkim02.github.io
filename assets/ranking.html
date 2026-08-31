@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Gothic+A1:wght@500;700;800&display=swap">
 <title>Allog</title>
 </head>
 <body>
@@ -53,22 +56,22 @@
   .tabs { display: flex; gap: 2px; flex: none; }
   .tab-btn {
     border: none; background: none; cursor: pointer; font-size: 14.5px;
-    font-weight: 600; color: var(--muted); padding: 8px 14px; border-radius: 8px;
+    font-weight: 600; color: var(--ink); padding: 8px 14px; border-radius: 8px;
   }
   .tab-btn:hover { color: var(--ink); background: var(--surface-2); }
   .tab-btn.active { color: var(--ink); background: var(--surface-2); }
   /* 검색 — 항상 보이는 입력창. 돋보기는 안쪽 아이콘으로만 남긴다. */
   .nav-search { margin-left: auto; position: relative; flex: none; }
   .nav-search svg {
-    position: absolute; left: 9px; top: 50%; transform: translateY(-50%);
-    width: 14px; height: 14px; color: var(--muted); pointer-events: none;
+    position: absolute; right: 11px; top: 50%; transform: translateY(-50%);
+    width: 14px; height: 14px; color: var(--ink); pointer-events: none;
   }
   .nav-search input {
-    width: 190px; font: inherit; font-size: 12.5px; padding: 6px 11px 6px 28px;
+    width: 190px; font: inherit; font-size: 12.5px; padding: 6px 30px 6px 13px;
     border-radius: 99px; border: 1px solid var(--line); background: var(--surface-2);
     color: var(--ink);
   }
-  .nav-search input::placeholder { color: var(--muted); }
+  .nav-search input::placeholder { color: var(--ink); opacity: .55; }
   .nav-search input:focus-visible { outline: 2px solid var(--purple); outline-offset: 1px; }
   @media (max-width: 720px) {
     .topnav-inner { flex-wrap: wrap; }
@@ -89,6 +92,52 @@
     border-radius: 9px; border: 1px solid var(--line); background: var(--surface);
     color: var(--ink); cursor: pointer;
   }
+  /* 카테고리 메뉴 — 대분류에 올리면 소분류가 오른쪽에 펼쳐지는 2단 메뉴.
+     네이티브 <select> 로는 중첩이 안 돼서 직접 만들었다. */
+  .catmenu { position: relative; }
+  .catmenu-btn {
+    font: inherit; font-size: 13px; font-weight: 600; padding: 8px 12px;
+    border-radius: 9px; border: 1px solid var(--line); background: var(--surface);
+    color: var(--ink); cursor: pointer; display: flex; align-items: center; gap: 7px;
+  }
+  .catmenu-btn:hover { background: var(--surface-2); }
+  .catmenu-btn .caret2 { font-size: 9px; color: var(--muted); }
+  .catmenu-pop {
+    position: absolute; top: calc(100% + 5px); left: 0; z-index: 60;
+    min-width: 178px; padding: 5px; border-radius: 11px;
+    background: var(--surface); border: 1px solid var(--line);
+    box-shadow: 0 6px 26px rgba(21,23,35,.14);
+  }
+  .catmenu-pop[hidden] { display: none; }
+  .catmenu-row { position: relative; }
+  .catmenu-item {
+    width: 100%; text-align: left; font: inherit; font-size: 13px; font-weight: 600;
+    padding: 8px 11px; border: none; border-radius: 7px; background: none;
+    color: var(--ink); cursor: pointer; display: flex; align-items: center;
+    justify-content: space-between; gap: 10px; white-space: nowrap;
+  }
+  .catmenu-item:hover, .catmenu-item:focus-visible,
+  .catmenu-row.open > .catmenu-item { background: var(--surface-2); outline: none; }
+  .catmenu-item[aria-current="true"] { color: var(--purple); }
+  .catmenu-item .arrow { font-size: 9px; color: var(--muted); }
+  /* 소분류는 부모 행 오른쪽에 붙는다. 화면 밖으로 나가면 왼쪽으로 뒤집는다. */
+  .catmenu-sub {
+    position: absolute; top: -5px; left: 100%; margin-left: 3px; z-index: 61;
+    min-width: 168px; padding: 5px; border-radius: 11px;
+    background: var(--surface); border: 1px solid var(--line);
+    box-shadow: 0 6px 26px rgba(21,23,35,.14);
+    max-height: 320px; overflow-y: auto;
+  }
+  .catmenu-sub[hidden] { display: none; }
+  .catmenu-row.flip > .catmenu-sub { left: auto; right: 100%; margin: 0 3px 0 0; }
+  .catmenu-sep { height: 1px; background: var(--line); margin: 4px 6px; }
+  @media (max-width: 560px) {
+    /* 좁은 화면에선 오른쪽에 펼칠 자리가 없다. 아래로 들여쓰기해 편다. */
+    .catmenu-sub { position: static; margin: 2px 0 4px 12px; box-shadow: none;
+      border-left: 2px solid var(--line); border-radius: 0; border-top: none;
+      border-right: none; border-bottom: none; max-height: 240px; }
+  }
+
   .fb-count { margin-left: auto; font-size: 12.5px; color: var(--muted);
     font-variant-numeric: tabular-nums; white-space: nowrap; }
 
@@ -159,34 +208,67 @@
   .pager-note { text-align: center; padding: 2px 18px 30px; font-size: 12.5px;
     color: var(--muted); font-variant-numeric: tabular-nums; }
 
-  /* 다음 세일 카운트다운 */
+  /* 다음 세일 카운트다운 — 배너답게 크게. 강조색 바탕에 흰 글씨로 깔고,
+     세일 문구는 Black Han Sans(장평이 좁고 굵어 세일 배너에 어울린다)로 뽑는다. */
   .sale-cd {
-    display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap;
-    margin: 20px 0 2px; padding: 14px 20px; border-radius: var(--radius);
-    border: 1px solid var(--line); background: var(--surface);
-    box-shadow: var(--shadow);
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 28px; flex-wrap: wrap;
+    margin: 20px 0 2px; padding: 22px 30px; border-radius: 16px;
+    background: linear-gradient(135deg, #0E9385 0%, #0B7A6E 100%);
+    color: #fff; border: none;
+    box-shadow: 0 2px 4px rgba(14,147,133,.16), 0 12px 30px rgba(14,147,133,.22);
   }
-  .sale-cd-label { display: flex; flex-direction: column; gap: 3px; }
-  .sale-cd-kicker { font-size: 11.5px; font-weight: 800; letter-spacing: .12em;
-    color: var(--purple); text-transform: uppercase; }
-  .sale-cd-name { font-size: 20px; font-weight: 800; letter-spacing: -.01em; }
-  .sale-cd-date { font-size: 12.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
-  .sale-cd-clock { display: flex; align-items: flex-start; gap: 8px; }
-  .cd-unit { display: flex; flex-direction: column; align-items: center; gap: 5px; min-width: 62px; }
+  .sale-cd-label { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .sale-cd-kicker {
+    font-size: 12px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase;
+    color: rgba(255,255,255,.82);
+    font-family: "Gothic A1", "Malgun Gothic", sans-serif;
+  }
+  .sale-cd-name {
+    font-family: "Black Han Sans", "Malgun Gothic", sans-serif;
+    font-size: 42px; font-weight: 400; line-height: 1.05; letter-spacing: -.01em;
+    color: #fff;
+  }
+  .sale-cd-date {
+    font-size: 14px; font-weight: 700; color: rgba(255,255,255,.9);
+    font-variant-numeric: tabular-nums;
+    font-family: "Gothic A1", "Malgun Gothic", sans-serif;
+  }
+  .sale-cd-clock { display: flex; align-items: flex-start; gap: 9px; flex: none; }
+  .cd-unit { display: flex; flex-direction: column; align-items: center; gap: 7px; min-width: 74px; }
   .cd-num {
-    font-size: 34px; font-weight: 800; font-variant-numeric: tabular-nums;
-    line-height: 1; padding: 11px 10px; border-radius: 10px; min-width: 100%;
-    text-align: center; background: var(--surface-2); color: var(--ink);
-    font-feature-settings: "tnum"; letter-spacing: .01em;
+    font-family: "Black Han Sans", "Malgun Gothic", sans-serif;
+    font-size: 46px; font-weight: 400; font-variant-numeric: tabular-nums;
+    line-height: 1; padding: 12px 8px; border-radius: 12px; min-width: 100%;
+    text-align: center; background: rgba(255,255,255,.14); color: #fff;
+    font-feature-settings: "tnum"; letter-spacing: .02em;
+    backdrop-filter: blur(2px);
   }
-  .cd-cap { font-size: 10px; font-weight: 700; letter-spacing: .1em; color: var(--muted); }
-  .cd-sep { font-size: 26px; font-weight: 800; color: var(--line); padding-top: 12px; }
-  .sale-cd.live .cd-num { background: var(--red-bg); color: var(--red); }
+  .cd-cap {
+    font-size: 10.5px; font-weight: 800; letter-spacing: .14em;
+    color: rgba(255,255,255,.75);
+    font-family: "Gothic A1", "Malgun Gothic", sans-serif;
+  }
+  .cd-sep { font-size: 34px; font-weight: 800; color: rgba(255,255,255,.35); padding-top: 14px; }
+  /* 세일이 진행 중이면 붉은 톤으로 뒤집어 "지금이다"를 알린다. */
+  .sale-cd.live { background: linear-gradient(135deg, #E0483C 0%, #C2352A 100%);
+    box-shadow: 0 2px 4px rgba(224,72,60,.16), 0 12px 30px rgba(224,72,60,.24); }
+
+  @media (max-width: 780px) {
+    .sale-cd { gap: 18px; padding: 20px 22px; }
+    .sale-cd-name { font-size: 34px; }
+    .cd-num { font-size: 36px; }
+    .cd-unit { min-width: 60px; }
+    .cd-sep { font-size: 28px; padding-top: 11px; }
+  }
   @media (max-width: 560px) {
-    .sale-cd { gap: 12px; padding: 14px 14px; }
-    .sale-cd-name { font-size: 17px; }
-    .cd-num { font-size: 26px; padding: 9px 8px; }
-    .cd-unit { min-width: 50px; }
+    .sale-cd { gap: 14px; padding: 18px 16px; justify-content: center; }
+    .sale-cd-label { align-items: center; text-align: center; }
+    .sale-cd-name { font-size: 30px; }
+    .cd-num { font-size: 29px; padding: 10px 6px; border-radius: 10px; }
+    .cd-unit { min-width: 50px; gap: 5px; }
+    .cd-sep { font-size: 22px; padding-top: 9px; }
+    .cd-cap { font-size: 9.5px; letter-spacing: .1em; }
   }
 
   /* ============ modal ============ */
@@ -228,7 +310,7 @@
     background: var(--green-bg); color: var(--green); }
 
   .m-facts {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
     margin: 18px 0; padding: 14px 16px; background: var(--surface-2); border-radius: 10px;
   }
   .m-fact .fl { font-size: 11px; color: var(--muted); }
@@ -411,7 +493,7 @@ let cachedList = [], shownCount = 0;
 const TAB_META = {
   hot:  { title: "인기세일", sub: "", sort: "dc-desc" },
   low:  { title: "지금 최저가", sub: "", sort: "dc-desc" },
-  list: { title: "전체 상품", sub: "추적 중인 전 상품입니다. 정가 상품도 포함됩니다.", sort: "name-asc" },
+  list: { title: "전체 상품", sub: "", sort: "name-asc" },
 };
 
 const SORTS = {
@@ -569,24 +651,66 @@ const CAT_TREE = (() => {
     .map(([k, v]) => [k, [...v].sort((a, b) => a.localeCompare(b, "ko"))]));
 })();
 
-function renderFilterBar() {
-  const bigOptions = [...CAT_TREE.keys()]
-    .map(c => `<option value="${esc(c)}"${state.cat === c ? " selected" : ""}>${esc(c)}</option>`).join("");
+/** 지금 고른 카테고리를 버튼에 뭐라고 쓸지 */
+function catLabel() {
+  if (state.cat === "all") return "전체 카테고리";
+  return state.sub === "all" ? state.cat : `${state.cat} › ${state.sub}`;
+}
 
-  // 소분류는 대분류를 고른 뒤에만 의미가 있다. 전체일 땐 비활성으로 둔다.
-  const subs = state.cat === "all" ? [] : (CAT_TREE.get(state.cat) || []);
-  const subOptions = subs
-    .map(c => `<option value="${esc(c)}"${state.sub === c ? " selected" : ""}>${esc(c)}</option>`).join("");
+function applyCat(big, sub) {
+  state.cat = big;
+  state.sub = sub;
+  closeCatMenu();
+  renderFilterBar();
+  renderGrid(true);
+}
+
+function closeCatMenu() {
+  const pop = document.getElementById("catmenu-pop");
+  if (!pop) return;
+  pop.hidden = true;
+  document.getElementById("catmenu-btn").setAttribute("aria-expanded", "false");
+  pop.querySelectorAll(".catmenu-row.open").forEach(r => r.classList.remove("open"));
+  pop.querySelectorAll(".catmenu-sub").forEach(el => { el.hidden = true; });
+}
+
+function renderFilterBar() {
+  const rows = [...CAT_TREE.entries()].map(([big, subs]) => `
+    <div class="catmenu-row" data-big="${esc(big)}">
+      <button type="button" class="catmenu-item" data-big="${esc(big)}"
+        aria-haspopup="true" aria-expanded="false"
+        aria-current="${state.cat === big ? "true" : "false"}">
+        <span>${esc(big)}</span><span class="arrow">▶</span>
+      </button>
+      <div class="catmenu-sub" hidden>
+        <button type="button" class="catmenu-item" data-big="${esc(big)}" data-sub="all"
+          aria-current="${state.cat === big && state.sub === "all" ? "true" : "false"}">
+          <span>${esc(big)} 전체</span>
+        </button>
+        <div class="catmenu-sep"></div>
+        ${subs.map(sub => `
+          <button type="button" class="catmenu-item" data-big="${esc(big)}" data-sub="${esc(sub)}"
+            aria-current="${state.cat === big && state.sub === sub ? "true" : "false"}">
+            <span>${esc(sub)}</span>
+          </button>`).join("")}
+      </div>
+    </div>`).join("");
 
   document.getElementById("filterbar").innerHTML = `
-    <select id="fb-category">
-      <option value="all">전체 카테고리</option>
-      ${bigOptions}
-    </select>
-    <select id="fb-sub"${subs.length ? "" : " disabled"}>
-      <option value="all">${subs.length ? "전체" : "소분류"}</option>
-      ${subOptions}
-    </select>
+    <div class="catmenu" id="catmenu">
+      <button type="button" class="catmenu-btn" id="catmenu-btn"
+        aria-haspopup="true" aria-expanded="false">
+        <span id="catmenu-label">${esc(catLabel())}</span><span class="caret2">▼</span>
+      </button>
+      <div class="catmenu-pop" id="catmenu-pop" hidden role="menu">
+        <button type="button" class="catmenu-item" data-big="all"
+          aria-current="${state.cat === "all" ? "true" : "false"}">
+          <span>전체 카테고리</span>
+        </button>
+        <div class="catmenu-sep"></div>
+        ${rows}
+      </div>
+    </div>
     <select id="fb-sort">
       <option value="dc-desc">할인율 높은순</option>
       <option value="sp-asc">가격 낮은순</option>
@@ -598,19 +722,78 @@ function renderFilterBar() {
 
   const sortSel = document.getElementById("fb-sort");
   sortSel.value = state.sort;
-
-  document.getElementById("fb-category").addEventListener("change", e => {
-    // 대분류가 바뀌면 이전 소분류는 더 이상 그 밑에 없으므로 반드시 푼다.
-    state.cat = e.target.value;
-    state.sub = "all";
-    renderFilterBar();
-    renderGrid(true);
-  });
-  document.getElementById("fb-sub").addEventListener("change", e => {
-    state.sub = e.target.value; renderGrid(true);
-  });
   sortSel.addEventListener("change", e => { state.sort = e.target.value; renderGrid(true); });
+
+  const menu = document.getElementById("catmenu");
+  const btn = document.getElementById("catmenu-btn");
+  const pop = document.getElementById("catmenu-pop");
+
+  btn.addEventListener("click", e => {
+    e.stopPropagation();
+    const open = pop.hidden;
+    if (open) { pop.hidden = false; btn.setAttribute("aria-expanded", "true"); }
+    else closeCatMenu();
+  });
+
+  /** 한 대분류의 소분류를 편다. 다른 건 접는다. */
+  function openRow(row) {
+    pop.querySelectorAll(".catmenu-row").forEach(r => {
+      if (r === row) return;
+      r.classList.remove("open");
+      r.querySelector(".catmenu-sub").hidden = true;
+    });
+    if (!row) return;
+    row.classList.add("open");
+    const sub = row.querySelector(".catmenu-sub");
+    sub.hidden = false;
+    row.querySelector(".catmenu-item").setAttribute("aria-expanded", "true");
+    // 오른쪽 공간이 모자라면 왼쪽으로 넘긴다.
+    row.classList.remove("flip");
+    const r = sub.getBoundingClientRect();
+    if (r.right > window.innerWidth - 8) row.classList.add("flip");
+  }
+
+  pop.querySelectorAll(".catmenu-row").forEach(row => {
+    row.addEventListener("mouseenter", () => openRow(row));
+    // 대분류 자체를 누르면 그 대분류 전체를 고른 것으로 본다.
+    // 터치 기기엔 hover 가 없어서, 첫 탭은 펼치기로만 쓴다.
+    row.querySelector(".catmenu-item").addEventListener("click", e => {
+      e.stopPropagation();
+      const big = row.dataset.big;
+      if (row.classList.contains("open")) applyCat(big, "all");
+      else openRow(row);
+    });
+  });
+
+  // 소분류(및 "OO 전체") 선택
+  pop.querySelectorAll(".catmenu-sub .catmenu-item").forEach(b => {
+    b.addEventListener("click", e => {
+      e.stopPropagation();
+      applyCat(b.dataset.big, b.dataset.sub);
+    });
+  });
+
+  // "전체 카테고리"
+  pop.querySelector('.catmenu-item[data-big="all"]').addEventListener("click", e => {
+    e.stopPropagation();
+    applyCat("all", "all");
+  });
+
+  menu.addEventListener("mouseleave", () => {
+    pop.querySelectorAll(".catmenu-row.open").forEach(r => {
+      r.classList.remove("open");
+      r.querySelector(".catmenu-sub").hidden = true;
+    });
+  });
 }
+
+// 메뉴 밖을 누르거나 Esc 를 누르면 닫는다.
+document.addEventListener("click", e => {
+  if (!e.target.closest("#catmenu")) closeCatMenu();
+});
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") closeCatMenu();
+});
 
 /* ============ 상세 모달 ============ */
 // 그래프 좌표를 모달 밖에서도 쓸 수 있게 보관한다(hover 툴팁이 참조).
@@ -772,7 +955,6 @@ function openModal(goodsNo) {
     <div class="m-facts">
       <div class="m-fact"><div class="fl">관측 중 최저</div><div class="fv">${fmtWon(item[F.low])}</div></div>
       <div class="m-fact"><div class="fl">관측 중 최고</div><div class="fv">${fmtWon(item[F.high])}</div></div>
-      <div class="m-fact"><div class="fl">관측일 수</div><div class="fv">${item[F.n]}일</div></div>
     </div>
 
     <a class="m-link" href="${esc(goodsUrl(item))}" target="_blank" rel="noopener noreferrer">올리브영에서 보기 ↗</a>
@@ -908,10 +1090,10 @@ function renderCountdown() {
   box.classList.toggle("live", live);
   document.querySelector(".sale-cd-kicker").textContent = live ? "지금 진행 중" : "다음 BIG SALE";
   document.getElementById("sale-cd-name").textContent = sale.name;
+  const startTxt = sale.start.toLocaleDateString("ko-KR",
+    { timeZone: "Asia/Seoul", month: "long", day: "numeric" });
   document.getElementById("sale-cd-date").textContent =
-    (live ? "종료까지 · ~" : "") +
-    sale.start.toLocaleDateString("ko-KR", { timeZone: "Asia/Seoul", month: "long", day: "numeric" }) +
-    (live ? " 시작" : " 시작 예정");
+    live ? `${startTxt} 시작 · 종료까지 남은 시간` : `${startTxt} 오픈`;
 
   const units = [[d, "DAYS"], [h, "HRS"], [mi, "MIN"], [sec, "SEC"]];
   document.getElementById("sale-cd-clock").innerHTML = units.map(([v, cap], i) =>
@@ -933,7 +1115,9 @@ if (!RK.items.length) {
 } else {
   const d = RK.dates;
   document.getElementById("page-title").textContent = TAB_META.list.title;
-  document.getElementById("page-sub").textContent = TAB_META.list.sub;
+  const subEl0 = document.getElementById("page-sub");
+  subEl0.textContent = TAB_META.list.sub;
+  subEl0.hidden = !TAB_META.list.sub;
   document.getElementById("footer-scope").textContent =
     `${d[0]} ~ ${d[d.length-1]} · ${RK.dates.length}일간 관측 · 상품 ${RK.uniqueGoods.toLocaleString("ko-KR")}개` +
     (RK.truncated ? ` (화면에는 관측이 많은 상위 ${RK.shownGoods.toLocaleString("ko-KR")}개만 표시)` : "");
